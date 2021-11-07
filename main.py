@@ -37,3 +37,5 @@ def stvorec_2(dlzka):
         t.forward(dlzka)
         t.right(90)
 stvorec_2(70)
+
+turtle.exitonclick()
