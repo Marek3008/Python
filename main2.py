@@ -14,7 +14,7 @@ def stvorec(dlzka):
 stvorec(dlzka1)
 
 t.penup()
-t.goto(randint(0,100),randint(0,100))
+t.goto(randint(-50,200),randint(-50,200))
 t.pendown()
 
 dlzka2 = random.randint(20,70)
