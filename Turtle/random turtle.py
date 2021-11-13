@@ -11,7 +11,7 @@ t.pencolor(randint(0,255),randint(0,255),randint(0,255))
 dlzka1 = random.randint(20,70)
 
 def stvorec(dlzka):
-    for s in range(4):
+  for s in range(4):
         t.forward(dlzka)
         t.left(90)
 stvorec(dlzka1)
@@ -49,3 +49,4 @@ hexagon(dlzka3)
 
 turtle.exitonclick()
 
+#konecne to ide nehehehe :)
