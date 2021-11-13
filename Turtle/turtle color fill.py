@@ -1,7 +1,9 @@
 import turtle
 t = turtle.Turtle()
+
 t.fillcolor("red")
 t.begin_fill()
+
 def s(dlzka):
     for i in range(4):
       t.forward(dlzka)
@@ -9,4 +11,5 @@ def s(dlzka):
 s(50)
 
 t.end_fill()
+
 turtle.exitonclick()
