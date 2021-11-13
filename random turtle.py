@@ -49,4 +49,3 @@ hexagon(dlzka3)
 
 turtle.exitonclick()
 
-m
