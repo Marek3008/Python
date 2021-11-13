@@ -1,6 +1,6 @@
 import random
 import turtle
-from turtle import *
+from turtle import*
 from random import randint
 t = turtle.Turtle()
 
@@ -11,7 +11,7 @@ t.pencolor(randint(0,255),randint(0,255),randint(0,255))
 dlzka1 = random.randint(20,70)
 
 def stvorec(dlzka):
-    for i in range(4):
+    for s in range(4):
         t.forward(dlzka)
         t.left(90)
 stvorec(dlzka1)
@@ -25,7 +25,7 @@ dlzka2 = random.randint(20,70)
 t.pencolor(randint(0,255),randint(0,255),randint(0,255))
 
 def trojuholnik(dlzka):
-    for a in range(3):
+    for i in range(3):
       t.forward(dlzka)
       t.left(120)
 trojuholnik(dlzka2)
@@ -41,10 +41,12 @@ dlzka3 = random.randint(20,70)
 t.pencolor(randint(0,255),randint(0,255),randint(0,255))
 
 def hexagon(dlzka):
-    for b in range(8):
+    for h in range(8):
         t.forward(dlzka)
         t.left(45)
 hexagon(dlzka3)
 
 
 turtle.exitonclick()
+
+m
