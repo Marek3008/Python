@@ -46,6 +46,6 @@ def hexagon(dlzka):
 hexagon(dlzka3)
 
 
-turtle.exitonclick()
+
 
 #konecne to ide nehehehe :)
