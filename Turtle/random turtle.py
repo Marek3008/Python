@@ -96,3 +96,4 @@ t.end_fill()
 turtle.exitonclick()
 
 #konecne to ide nehehehe :)
+#neviem ako urobiť náhodný počet objektov :(
