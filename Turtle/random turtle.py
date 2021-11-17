@@ -5,7 +5,7 @@ from random import randint
 t = turtle.Turtle()
 t.hideturtle()
 t.speed(25)
-
+turtle.screensize(canvwidth=3000, canvheight=3000)
 
 t.left(randint(0, 360))
 
