@@ -14,9 +14,9 @@ def kalkulacka():
               if operacia == "/":
                      print(vysledok, number1 / number2)
               pokracovanie = input("Chceš pokračovať? ")
-              if pokracovanie == "áno":
+              if "áno" in pokracovanie:
                      False
-              if pokracovanie == "nie":
+              if "nie" in pokracovanie:
                      break
 
 kalkulacka()
