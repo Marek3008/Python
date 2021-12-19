@@ -54,7 +54,7 @@ dlzka3 = random.randint(20, 70)
 dlzka4 = random.randint(30, 90)
 
 
-for g in range(randrange(1, 4)):
+for g in range(randrange(1,4)):
     color_filling(color1)
     stvorec(dlzka1)
     after_object()
