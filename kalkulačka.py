@@ -1,5 +1,3 @@
-
-
 def kalkulacka():
        while True:
               number1 = int(input("Zadaj prvé číslo: "))
