@@ -1,4 +1,5 @@
 import random
+print("VITAJ! MYSLÍŠ SI, ŽE VYHRÁŠ?")
 tah = ("kamen", "papier", "noznice")
 moje_skore = []
 pc_skore = []
@@ -7,7 +8,7 @@ pc_skore = []
 def kmn_hra():
     while True:
         pc_tah = random.choice(tah)
-        moj_tah = input("KAMEN/PAPIER/NOZNICE  ")
+        moj_tah = input("kamen/papier/noznice:  ")
         print(pc_tah)
         if moj_tah == "kamen" and pc_tah == "papier":
             pc_skore.append(1)
