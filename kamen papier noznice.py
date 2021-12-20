@@ -55,6 +55,6 @@ def kmn_hra():
             print("Vyhral si! ")
             break
         if sum(pc_skore) == 3:
-            print("Pc vyhral! ")
+            print("Pc vyhral! Mal si sa snažiť viac")
             break
 kmn_hra()
