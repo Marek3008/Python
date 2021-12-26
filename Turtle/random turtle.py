@@ -74,5 +74,4 @@ for z in range(randrange(1,4)):
 
 turtle.exitonclick()
 
-#konecne to ide nehehehe :)
-#neviem ako urobiť náhodný počet objektov :(
+
