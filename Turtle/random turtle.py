@@ -4,7 +4,7 @@ from turtle import*
 from random import randint, randrange
 t = turtle.Turtle()
 t.hideturtle()
-t.speed(25)
+t.speed(50)
 colormode(255)
 turtle.screensize(canvwidth=3000, canvheight=3000)
 "--------------------------------------------------------------"
