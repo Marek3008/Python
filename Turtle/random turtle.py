@@ -43,34 +43,36 @@ def kosostvorec(dlzka):
         t.left(110)
 "--------------------------------------------------------------"
 
-color1 = randint(0, 255), randint(0, 255), randint(0, 255)
-color2 = randint(0, 255), randint(0, 255), randint(0, 255)
-color3 = randint(0, 255), randint(0, 255), randint(0, 255)
-color4 = randint(0, 255), randint(0, 255), randint(0, 255)
+input_number = int(input("Koľko kôl chceš ísť? "))
+n = 0
 
-dlzka1 = random.randint(20, 70)
-dlzka2 = random.randint(20, 70)
-dlzka3 = random.randint(20, 70)
-dlzka4 = random.randint(30, 90)
+while n < input_number:
+    color1 = randint(0, 255), randint(0, 255), randint(0, 255)
+    color2 = randint(0, 255), randint(0, 255), randint(0, 255)
+    color3 = randint(0, 255), randint(0, 255), randint(0, 255)
+    color4 = randint(0, 255), randint(0, 255), randint(0, 255)
 
-
-for g in range(randrange(1,4)):
-    color_filling(color1)
-    stvorec(dlzka1)
-    after_object()
-for h in range(randrange(1,4)):
-    color_filling(color2)
-    trojuholnik(dlzka2)
-    after_object()
-for u in range(randrange(1,4)):
-    color_filling(color3)
-    hexagon(dlzka3)
-    after_object()
-for z in range(randrange(1,4)):
-    color_filling(color4)
-    kosostvorec(dlzka4)
-    after_object()
-
+    dlzka1 = random.randint(20, 70)
+    dlzka2 = random.randint(20, 70)
+    dlzka3 = random.randint(20, 70)
+    dlzka4 = random.randint(30, 90)
+    for g in range(randrange(1,4)):
+        color_filling(color1)
+        stvorec(dlzka1)
+        after_object()
+    for h in range(randrange(1,4)):
+        color_filling(color2)
+        trojuholnik(dlzka2)
+        after_object()
+    for u in range(randrange(1,4)):
+        color_filling(color3)
+        hexagon(dlzka3)
+        after_object()
+    for z in range(randrange(1,4)):
+        color_filling(color4)
+        kosostvorec(dlzka4)
+        after_object()
+    n = n + 1
 
 turtle.exitonclick()
 
