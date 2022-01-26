@@ -12,7 +12,7 @@ def after_tah():
 def kmn_hra():
     while True:
         pc_tah = random.choice(tah)
-        moj_tah = input("kamen/papier/noznice:  ")
+        moj_tah = input("kamen/papier/noznice ")
         print("PC si vybral ",pc_tah)
         if moj_tah == "kamen" and pc_tah == "papier":
             pc_skore.append(1)
