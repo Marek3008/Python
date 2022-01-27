@@ -1,6 +1,6 @@
 import random
 
-import pong
+
 from pyglet.gl import gl
 from pyglet.window import key
 width = 1000
