@@ -1,6 +1,5 @@
+import pyglet
 import random
-
-
 from pyglet.gl import gl
 from pyglet.window import key
 width = 1000
@@ -38,7 +37,7 @@ def reset():
 
 
 def vykresli_obdlznik(x1, y1, x2, y2):
-    gl.glBegin(pong.gl.GL_TRIANGLE_FAN)
+    gl.glBegin(pyglet.gl.GL_TRIANGLE_FAN)
     gl.glVertex2f(int(x1), int(y1))
     gl.glVertex2f(int(x1), int(y2))
     gl.glVertex2f(int(x2), int(y2))
@@ -46,7 +45,7 @@ def vykresli_obdlznik(x1, y1, x2, y2):
     gl.glEnd()
 
 def vykresli():
-    gl.glClear(pong.gl.GL_COLOR_BUFFER_BIT)
+    gl.glClear(pyglet.gl.GL_COLOR_BUFFER_BIT)
     gl.glColor3f(1, 1, 1)
 
     vykresli_obdlznik(
@@ -73,7 +72,7 @@ def vykresli():
 
 
 def nakresli_text(text, x, y, pozicia_x):
-    napis = pong.text.Label(text, font_size = font_size, x = x, y = y, anchor_x=pozicia_x)
+    napis = pyglet.text.Label(text, font_size = font_size, x = x, y = y, anchor_x=pozicia_x)
     napis.draw()
 def stisk_klavesnice(symbol, modifikatory):
     if symbol == key.W:
@@ -139,12 +138,12 @@ def obnov_stav(dt):
             skore[0] += 1
             reset()
 reset()
-window = pong.window.Window(width = width, height = height)
+window = pyglet.window.Window(width = width, height = height)
 window.push_handlers(
     on_draw = vykresli,
     on_key_press = stisk_klavesnice,
     on_key_release = pusti_klavesnice
 )
-pong.clock.schedule(obnov_stav)
+pyglet.clock.schedule(obnov_stav)
 
-pong.app.run()
+pyglet.app.run()
