@@ -21,6 +21,13 @@ label1 = pyglet.text.Label("lavy", x=300, y=300)
 label2 = pyglet.text.Label("pravy", x=300, y=300)
 """
 #toto nakresli mriezku
+def nakresli():
+    gl.glClear(pyglet.gl.GL_COLOR_BUFFER_BIT)
+    gl.glColor3f(0, 255, 0)
+    ciary(width / 3 - 5, 0, width / 3 + 5, height)
+    ciary(width / 3 * 2 - 5, 0, width / 3 * 2 + 5, height)
+    ciary(0, height / 3 - 5, width, height / 3 + 5)
+    ciary(0, height / 3 * 2 - 5, width, height / 3 * 2 + 5)
 
 def stlac_mys(x, y, tlacitko, modifikatory):
     if tlacitko == mouse.LEFT:
@@ -29,13 +36,7 @@ def stlac_mys(x, y, tlacitko, modifikatory):
         print("pravy")
     if tlacitko == mouse.MIDDLE:
         print("stredny")
-def nakresli():
-    gl.glClear(pyglet.gl.GL_COLOR_BUFFER_BIT)
-    gl.glColor3f(0, 255, 0)
-    ciary(width / 3 - 5, 0, width / 3 + 5, height)
-    ciary(width / 3 * 2 - 5, 0, width / 3 * 2 + 5, height)
-    ciary(0, height / 3 - 5, width, height / 3 + 5)
-    ciary(0, height / 3 * 2 - 5, width, height / 3 * 2 + 5)
+
 
 #toto je to co to ma urobit
 window.push_handlers(
