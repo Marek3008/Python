@@ -94,9 +94,8 @@ def pusti_klavesnice(symbol, modifikatory):
     if symbol == key.DOWN:
         stisknutie_klavesy.discard(("dole", 1))
 
-
-    nakresli_text(str(skore[0]), x=odsadenie_textu, y=height-odsadenie_textu-font_size,pozicia_x="left")
-    nakresli_text(str(skore[1]), x=width-odsadenie_textu, y=height-odsadenie_textu-font_size, pozicia_x="right")
+nakresli_text(str(skore[0]), x=odsadenie_textu, y=height-odsadenie_textu-font_size,pozicia_x="left")
+nakresli_text(str(skore[1]), x=width-odsadenie_textu, y=height-odsadenie_textu-font_size, pozicia_x="right")
 
 def obnov_stav(dt):
     for cislo_palky in (0,1):
