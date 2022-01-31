@@ -1,5 +1,4 @@
 #pridam do kodu veci s ktorymi budem pracovat
-from turtle import window_height
 import pyglet
 from pyglet.gl import gl
 from pyglet.window import mouse, key
