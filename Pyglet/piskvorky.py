@@ -4,7 +4,7 @@ from pyglet.window import mouse
 
 width = 600
 height = 600
-
+nazov_okna = "Piškvorky"
 #vytvori okno
 window = pyglet.window.Window(width=600, height=600)
 
@@ -43,6 +43,5 @@ window.push_handlers(
     on_draw=nakresli,
     on_mouse_press=stlac_mys
 )
-
 #program zacne bezat
 pyglet.app.run()
