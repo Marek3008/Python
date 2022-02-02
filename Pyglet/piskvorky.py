@@ -1,8 +1,9 @@
 #pridam do kodu veci s ktorymi budem pracovat
 import pyglet
 from pyglet.gl import gl
-from pyglet.window import mouse, key
+from pyglet.window import mouse
 
+#sirka, vyska
 width = 600
 height = 600
 
@@ -21,7 +22,7 @@ def ciary(x1, y1, x2, y2):
 #toto nakresli mriezku (tu je pouzita definicia ciar a namiesto pismen su cisla, a usetril som cas a miesto takze kod je priehladnejsi)
 def nakresli():
     gl.glClear(pyglet.gl.GL_COLOR_BUFFER_BIT)
-    gl.glColor3f(0, 255, 0)
+    gl.glColor3f(0, 0, 190)
     ciary(width / 3 - 5, 0, width / 3 + 5, height)
     ciary(width / 3 * 2 - 5, 0, width / 3 * 2 + 5, height)
     ciary(0, height / 3 - 5, width, height / 3 + 5)
@@ -41,7 +42,7 @@ def stlac_mys(x, y, tlacitko, modifikatory):
 
 #toto je to co to ma urobit 
 #ak pouzijem @window.event tak veci ako on_draw atd zaradim do definicie
-#za "=" su funkcie, ale zatvorky sa v tomto pripade za ne nedavaju
+#za "=" su funkcie, ale zatvorky sa v tomto pripade za ne nedavaju pretoze potom to nebude fungovat
 window.push_handlers(
     on_draw=nakresli,
     on_mouse_press=stlac_mys
