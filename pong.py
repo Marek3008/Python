@@ -1,3 +1,4 @@
+#nefunguje
 import random
 
 import pyglet
