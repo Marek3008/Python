@@ -22,7 +22,7 @@ def ciary(x1, y1, x2, y2):
 #toto nakresli mriezku (tu je pouzita definicia ciar a namiesto pismen su cisla, a usetril som cas a miesto takze kod je priehladnejsi)
 def nakresli():
     gl.glClear(pyglet.gl.GL_COLOR_BUFFER_BIT)
-    gl.glColor3f(0, 0, 190)
+    gl.glColor3f(0, 255, 0)
     ciary(width / 3 - 5, 0, width / 3 + 5, height)
     ciary(width / 3 * 2 - 5, 0, width / 3 * 2 + 5, height)
     ciary(0, height / 3 - 5, width, height / 3 + 5)
