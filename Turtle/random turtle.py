@@ -72,7 +72,7 @@ while n < input_number:
         color_filling(color4)
         kosostvorec(dlzka4)
         after_object()
-    n = n + 1
+    n += 1
 
 turtle.exitonclick()
 
