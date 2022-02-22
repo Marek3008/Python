@@ -1,12 +1,14 @@
 import pygame, sys
 
 
+
 #toto tu musi byt
 pygame.init()
 
-#konstanty
+#konstanty a dalsie vecicky
 VYSKA = 600
 SIRKA = 600
+stlacene = False
 
 #obrazovka
 obrazovka = pygame.display.set_mode((SIRKA, VYSKA))
@@ -30,4 +32,9 @@ while True:
     for udalost in pygame.event.get():
         if udalost.type == pygame.QUIT:
             sys.exit()
+        if udalost.type == pygame.MOUSEBUTTONDOWN and stlacene == False :
+            stlacene = True
+            print("Stlacene!!")
+        if udalost.type == pygame.MOUSEBUTTONUP and stlacene == True:
+            stlacene = False
     pygame.display.update()
