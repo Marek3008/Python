@@ -4,19 +4,19 @@ def ocekuj(cislo, kto_hra):
         kto_hra = 2
     if cislo % 3 == 0:
         if cislo % 5 == 0:
-            print(str(kto_hra),": HalaBala")
+            print("Hráč ",str(kto_hra),": HalaBala")
         else:
-            print(str(kto_hra), ": Hala")
+            print("Hráč ",str(kto_hra), ": Hala")
     elif cislo % 5 == 0:
         if cislo % 3 == 0:
-            print(str(kto_hra), ": HalaBala")
+            print("Hráč ",str(kto_hra), ": HalaBala")
         else:
-            print(str(kto_hra), ": Bala")
+            print("Hráč ",str(kto_hra), ": Bala")
     else:
-        print(str(kto_hra), ": ", cislo)
+        print("Hráč ",str(kto_hra), ": ", cislo)
 
 n = 1
-hrac = 1
+hrac =  1
 while n < 101:
     ocekuj(n, hrac)
     n += 1
