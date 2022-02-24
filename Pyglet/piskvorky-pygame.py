@@ -10,6 +10,8 @@ VYSKA = 600
 SIRKA = 600
 stlacene = False
 hrac = 1
+vyherca = ""
+cas1 = 0
 
 #hracia plocha v terminali
 hracia_plocha = [[0,0,0],
@@ -137,53 +139,66 @@ def skontroluj_horizontalne():
     if hracia_plocha[0] == [1, 1, 1] or hracia_plocha[1] == [1, 1, 1] or hracia_plocha[2] == [1, 1, 1]:
         pygame.draw.line(obrazovka, (204, 51, 0), (15, 100), (585, 100), 12)
         obrazovka.blit(nadpis1, (115, 275))
+        vyherca = "1"
     #hrac 2
     if hracia_plocha[0] == [2, 2, 2] or hracia_plocha[1] == [2, 2, 2] or hracia_plocha[2] == [2, 2, 2]:
         pygame.draw.line(obrazovka, (204, 51, 0), (15, 100), (585, 100), 12)
         obrazovka.blit(nadpis2, (115, 275))
+        vyherca = "2"
 def skontroluj_vertikalne():
     #hrac 1
     if hracia_plocha[0][0] == 1 and hracia_plocha[1][0] == 1 and hracia_plocha[2][0] == 1:
         pygame.draw.line(obrazovka, (204, 51, 0), (100, 15), (100, 585), 12)
         obrazovka.blit(nadpis1, (115, 275))
+        vyherca = "1"
     if hracia_plocha[0][1] == 1 and hracia_plocha[1][1] == 1 and hracia_plocha[2][1] == 1:
         pygame.draw.line(obrazovka, (204, 51, 0), (300, 15), (300, 585), 12)
         obrazovka.blit(nadpis1, (115, 275))
+        vyherca = "1"
     if hracia_plocha[0][2] == 1 and hracia_plocha[1][2] == 1 and hracia_plocha[2][2] == 1:
         pygame.draw.line(obrazovka, (204, 51, 0), (500, 15), (500, 585), 12)
         obrazovka.blit(nadpis1, (115, 275))
+        vyherca = "1"
     #hrac 2
     if hracia_plocha[0][0] == 2 and hracia_plocha[1][0] == 2 and hracia_plocha[2][0] == 2:
         pygame.draw.line(obrazovka, (204, 51, 0), (100, 15), (100, 585), 12)
         obrazovka.blit(nadpis2, (115, 275))
+        vyherca = "2"
     if hracia_plocha[0][1] == 2 and hracia_plocha[1][1] == 2 and hracia_plocha[2][1] == 2:
         pygame.draw.line(obrazovka, (204, 51, 0), (300, 15), (300, 585), 12)
         obrazovka.blit(nadpis2, (115, 275))
+        vyherca = "2"
     if hracia_plocha[0][2] == 2 and hracia_plocha[1][2] == 2 and hracia_plocha[2][2] == 2:
         pygame.draw.line(obrazovka, (204, 51, 0), (500, 15), (500, 585), 12)
         obrazovka.blit(nadpis2, (115, 275))
+        vyherca = "2"
 def skontroluj_diagonalne():
     #hrac 1 
     if hracia_plocha[0][0] == 1 and hracia_plocha[1][1] == 1 and hracia_plocha[2][2] == 1:
         pygame.draw.line(obrazovka, (204, 51, 0), (15, 15), (585, 585), 12)
         obrazovka.blit(nadpis1, (115, 275))
+        vyherca = "1"
     if hracia_plocha[0][2] == 1 and hracia_plocha[1][1] == 1 and hracia_plocha[2][0] == 1:
         pygame.draw.line(obrazovka, (204, 51, 0), (585, 15), (15, 585), 12)
         obrazovka.blit(nadpis1, (115, 275))
+        vyherca = "1"
     #hrac 2
     if hracia_plocha[0][0] == 2 and hracia_plocha[1][1] == 2 and hracia_plocha[2][2] == 2:
         pygame.draw.line(obrazovka, (204, 51, 0), (15, 15), (585, 585), 12)
         obrazovka.blit(nadpis2, (115, 275))
+        vyherca = "2"
     if hracia_plocha[0][2] == 2 and hracia_plocha[1][1] == 2 and hracia_plocha[2][0] == 2:
         pygame.draw.line(obrazovka, (204, 51, 0), (585, 15), (15, 585), 12)
         obrazovka.blit(nadpis2, (115, 275))
+        vyherca = "2"
     
 
 
 #hlavny cyklus ktory tu tiez musi byt, v nom je vlastne napisane to co sa ma diat
 while True:
     for udalost in pygame.event.get():
-        if udalost.type == pygame.QUIT:
+        if udalost.type == pygame.QUIT or udalost.type == pygame.K_ESCAPE:
+            pygame.quit()
             sys.exit()
         if udalost.type == pygame.MOUSEBUTTONDOWN and stlacene == False :
             stlacene = True
