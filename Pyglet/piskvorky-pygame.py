@@ -23,6 +23,8 @@ font = pygame.font.SysFont("Consolas", 50)
 nadpis1 = font.render("VYHRAL HRÁČ 1 !!", True, (102, 204, 51))
 nadpis2 = font.render("VYHRAL HRÁČ 2 !!", True, (102, 204, 51))
 remiza1 = font.render("REMÍZA !!", True, (102, 204, 51))
+hrac1_text = font.render("Hráč 1", True, (29, 131, 72))
+hrac2_text = font.render("Hráč 2", True, (153, 0, 102))
 
 #obrazovka
 obrazovka = pygame.display.set_mode((SIRKA, VYSKA))
@@ -32,6 +34,7 @@ obrazovka.fill((93, 173, 226))
 def ciara(bod_A, bod_B):
     pygame.draw.line(obrazovka, (46, 134, 193), bod_A, bod_B, 10)
 
+##mriezka
 #1. vertikalna
 ciara((200, 0), (200, 600))
 #2. vertikalna
@@ -43,9 +46,19 @@ ciara((0, 400), (600, 400))
 #spodna
 ciara((0, 600), (600, 600))
 
+#texty hracov
+obrazovka.blit(hrac1_text, (120, 630))
+obrazovka.blit(hrac2_text, (355, 630))
 
+def kto_je_na_rade():
+    if hrac == 1:
+        pygame.draw.circle(obrazovka, (0, 0, 0), (190, 685), 5)
+        pygame.draw.circle(obrazovka, (93, 173, 226), (445, 685), 5)
+    if hrac == -1:
+        pygame.draw.circle(obrazovka, (0, 0, 0), (445, 685), 5)
+        pygame.draw.circle(obrazovka, (93, 173, 226), (190, 685), 5)
 
-
+#prida kriziky a kruzky do *hracej plochy* vo forme jednotiek a dvojok
 def prida_do_hracej_plochy(riadok, stlpec, cislo):
     for riadocek in hracia_plocha:
         for nula in riadocek:
@@ -54,11 +67,10 @@ def prida_do_hracej_plochy(riadok, stlpec, cislo):
                 hracia_plocha[riadok].insert(stlpec, cislo)
 
 def nakresli_krizik(x1, y1, x2, y2, x3, y3, x4, y4):
-    pygame.draw.line(obrazovka, (0, 0, 0), (x1, y1), (x2, y2), 8)
-    pygame.draw.line(obrazovka, (0, 0, 0), (x3, y3), (x4, y4), 8)
-
+    pygame.draw.line(obrazovka, (29, 131, 72), (x1, y1), (x2, y2), 8)
+    pygame.draw.line(obrazovka, (29, 131, 72), (x3, y3), (x4, y4), 8)
 def nakresli_kruzok(x, y):
-    pygame.draw.circle(obrazovka, (0, 0, 0), (x, y), 80, 8)
+    pygame.draw.circle(obrazovka, (153, 0, 102), (x, y), 80, 8)
 
 #######s tymto som maximalne nespokojny ale uz som bol zufaly a nevedel ako mam pokracovat
 def nakresli_znak():
@@ -136,7 +148,7 @@ def nakresli_znak():
             nakresli_kruzok(500, 500)
 
 
-
+# kontroly vyhier
 def skontroluj_horizontalne():
     #hrac 1
     if hracia_plocha[0] == [1, 1, 1] or hracia_plocha[1] == [1, 1, 1] or hracia_plocha[2] == [1, 1, 1]:
@@ -198,6 +210,8 @@ def remiza():
     if 0 not in hracia_plocha[0] and 0 not in hracia_plocha[1] and 0 not in hracia_plocha[2]:
         obrazovka.blit(remiza1, (200, 275))
 
+#prva bodka pri hracovi 1
+pygame.draw.circle(obrazovka, (0, 0, 0), (190, 685), 5)
 
 #hlavny cyklus ktory tu tiez musi byt, v nom je vlastne napisane to co sa ma diat
 while True:
@@ -217,7 +231,9 @@ while True:
             remiza()
         if udalost.type == pygame.MOUSEBUTTONUP and stlacene == True:
             stlacene = False
-            hrac *= -1
+            if pozicia_x in range(0, 600) and pozicia_y in range(0, 600):
+                hrac *= -1
+            kto_je_na_rade()
         if vyherca == "2" or vyherca == "1":
             pygame.quit()
             sys.exit()
