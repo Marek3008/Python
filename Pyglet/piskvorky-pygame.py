@@ -10,7 +10,7 @@ VYSKA = 700
 SIRKA = 600
 stlacene = False
 hrac = 1
-vyherca = ""
+vyherca = []
 cas1 = 0
 
 #hracia plocha v terminali
@@ -49,6 +49,7 @@ ciara((0, 600), (600, 600))
 #texty hracov
 obrazovka.blit(hrac1_text, (120, 630))
 obrazovka.blit(hrac2_text, (355, 630))
+
 
 def kto_je_na_rade():
     if hrac == 1:
@@ -154,64 +155,67 @@ def skontroluj_horizontalne():
     if hracia_plocha[0] == [1, 1, 1] or hracia_plocha[1] == [1, 1, 1] or hracia_plocha[2] == [1, 1, 1]:
         pygame.draw.line(obrazovka, (204, 51, 0), (15, 100), (585, 100), 12)
         obrazovka.blit(nadpis1, (115, 275))
-        vyherca = "1"
+        vyherca.append(1)
     #hrac 2
     if hracia_plocha[0] == [2, 2, 2] or hracia_plocha[1] == [2, 2, 2] or hracia_plocha[2] == [2, 2, 2]:
         pygame.draw.line(obrazovka, (204, 51, 0), (15, 100), (585, 100), 12)
         obrazovka.blit(nadpis2, (115, 275))
-        vyherca = "2"
+        vyherca.append(1)
 def skontroluj_vertikalne():
     #hrac 1
     if hracia_plocha[0][0] == 1 and hracia_plocha[1][0] == 1 and hracia_plocha[2][0] == 1:
         pygame.draw.line(obrazovka, (204, 51, 0), (100, 15), (100, 585), 12)
         obrazovka.blit(nadpis1, (115, 275))
-        vyherca = "1"
+        vyherca.append(1)
     if hracia_plocha[0][1] == 1 and hracia_plocha[1][1] == 1 and hracia_plocha[2][1] == 1:
         pygame.draw.line(obrazovka, (204, 51, 0), (300, 15), (300, 585), 12)
         obrazovka.blit(nadpis1, (115, 275))
-        vyherca = "1"
+        vyherca.append(1)
     if hracia_plocha[0][2] == 1 and hracia_plocha[1][2] == 1 and hracia_plocha[2][2] == 1:
         pygame.draw.line(obrazovka, (204, 51, 0), (500, 15), (500, 585), 12)
         obrazovka.blit(nadpis1, (115, 275))
-        vyherca = "1"
+        vyherca.append(1)
     #hrac 2
     if hracia_plocha[0][0] == 2 and hracia_plocha[1][0] == 2 and hracia_plocha[2][0] == 2:
         pygame.draw.line(obrazovka, (204, 51, 0), (100, 15), (100, 585), 12)
         obrazovka.blit(nadpis2, (115, 275))
-        vyherca = "2"
+        vyherca.append(1)
     if hracia_plocha[0][1] == 2 and hracia_plocha[1][1] == 2 and hracia_plocha[2][1] == 2:
         pygame.draw.line(obrazovka, (204, 51, 0), (300, 15), (300, 585), 12)
         obrazovka.blit(nadpis2, (115, 275))
-        vyherca = "2"
+        vyherca.append(1)
     if hracia_plocha[0][2] == 2 and hracia_plocha[1][2] == 2 and hracia_plocha[2][2] == 2:
         pygame.draw.line(obrazovka, (204, 51, 0), (500, 15), (500, 585), 12)
         obrazovka.blit(nadpis2, (115, 275))
-        vyherca = "2"
+        vyherca.append(1)
 def skontroluj_diagonalne():
     #hrac 1 
     if hracia_plocha[0][0] == 1 and hracia_plocha[1][1] == 1 and hracia_plocha[2][2] == 1:
         pygame.draw.line(obrazovka, (204, 51, 0), (15, 15), (585, 585), 12)
         obrazovka.blit(nadpis1, (115, 275))
-        vyherca = "1"
+        vyherca.append(1)
     if hracia_plocha[0][2] == 1 and hracia_plocha[1][1] == 1 and hracia_plocha[2][0] == 1:
         pygame.draw.line(obrazovka, (204, 51, 0), (585, 15), (15, 585), 12)
         obrazovka.blit(nadpis1, (115, 275))
-        vyherca = "1"
+        vyherca.append(1)
     #hrac 2
     if hracia_plocha[0][0] == 2 and hracia_plocha[1][1] == 2 and hracia_plocha[2][2] == 2:
         pygame.draw.line(obrazovka, (204, 51, 0), (15, 15), (585, 585), 12)
         obrazovka.blit(nadpis2, (115, 275))
-        vyherca = "2"
+        vyherca.append(1)
     if hracia_plocha[0][2] == 2 and hracia_plocha[1][1] == 2 and hracia_plocha[2][0] == 2:
         pygame.draw.line(obrazovka, (204, 51, 0), (585, 15), (15, 585), 12)
         obrazovka.blit(nadpis2, (115, 275))
-        vyherca = "2"
+        vyherca.append(1)
 def remiza():
     if 0 not in hracia_plocha[0] and 0 not in hracia_plocha[1] and 0 not in hracia_plocha[2]:
         obrazovka.blit(remiza1, (200, 275))
+        vyherca.append(1)
 
 #prva bodka pri hracovi 1
 pygame.draw.circle(obrazovka, (0, 0, 0), (190, 685), 5)
+
+
 
 #hlavny cyklus ktory tu tiez musi byt, v nom je vlastne napisane to co sa ma diat
 while True:
@@ -234,7 +238,6 @@ while True:
             if pozicia_x in range(0, 600) and pozicia_y in range(0, 600):
                 hrac *= -1
             kto_je_na_rade()
-        if vyherca == "2" or vyherca == "1":
-            pygame.quit()
-            sys.exit()
+        if 1 in vyherca:
+            pass
     pygame.display.update()
