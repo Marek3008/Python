@@ -238,6 +238,7 @@ while True:
             if pozicia_x in range(0, 600) and pozicia_y in range(0, 600):
                 hrac *= -1
             kto_je_na_rade()
-        if 1 in vyherca:
-            pass
+            if 1 in vyherca:
+                pygame.time.wait(3000)
+                pygame.quit()
     pygame.display.update()
