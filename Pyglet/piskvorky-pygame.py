@@ -30,6 +30,8 @@ hrac2_text = font.render("Hráč 2", True, (153, 0, 102))
 obrazovka = pygame.display.set_mode((SIRKA, VYSKA))
 obrazovka.fill((93, 173, 226))
 
+#ktory_hrac = int(input("gg"))
+
 #definicia ciar
 def ciara(bod_A, bod_B):
     pygame.draw.line(obrazovka, (46, 134, 193), bod_A, bod_B, 10)
@@ -158,9 +160,10 @@ def skontroluj_horizontalne():
         vyherca.append(1)
     #hrac 2
     if hracia_plocha[0] == [2, 2, 2] or hracia_plocha[1] == [2, 2, 2] or hracia_plocha[2] == [2, 2, 2]:
-        pygame.draw.line(obrazovka, (204, 51, 0), (15, 100), (585, 100), 12)
+        pygame.draw.line(obrazovka, (204, 51, 0), (15, 300), (585, 300), 12)
         obrazovka.blit(nadpis2, (115, 275))
         vyherca.append(1)
+    skontroluj_horizontalne.has_been_called = True
 def skontroluj_vertikalne():
     #hrac 1
     if hracia_plocha[0][0] == 1 and hracia_plocha[1][0] == 1 and hracia_plocha[2][0] == 1:
@@ -188,6 +191,7 @@ def skontroluj_vertikalne():
         pygame.draw.line(obrazovka, (204, 51, 0), (500, 15), (500, 585), 12)
         obrazovka.blit(nadpis2, (115, 275))
         vyherca.append(1)
+    skontroluj_vertikalne.has_been_called = True
 def skontroluj_diagonalne():
     #hrac 1 
     if hracia_plocha[0][0] == 1 and hracia_plocha[1][1] == 1 and hracia_plocha[2][2] == 1:
@@ -207,13 +211,20 @@ def skontroluj_diagonalne():
         pygame.draw.line(obrazovka, (204, 51, 0), (585, 15), (15, 585), 12)
         obrazovka.blit(nadpis2, (115, 275))
         vyherca.append(1)
+    skontroluj_diagonalne.has_been_called = True
 def remiza():
     if 0 not in hracia_plocha[0] and 0 not in hracia_plocha[1] and 0 not in hracia_plocha[2]:
+        #if
         obrazovka.blit(remiza1, (200, 275))
-        vyherca.append(1)
+        vyherca.append(0)
+    
+skontroluj_horizontalne.has_been_called = False
+skontroluj_vertikalne.has_been_called = False
+skontroluj_diagonalne.has_been_called = False
 
-#prva bodka pri hracovi 1
+
 pygame.draw.circle(obrazovka, (0, 0, 0), (190, 685), 5)
+
 
 
 
@@ -232,13 +243,14 @@ while True:
             skontroluj_horizontalne()
             skontroluj_vertikalne()
             skontroluj_diagonalne()
-            remiza()
+            if skontroluj_horizontalne.has_been_called == False or skontroluj_vertikalne.has_been_called == False or skontroluj_diagonalne.has_been_called == False:
+                remiza()
         if udalost.type == pygame.MOUSEBUTTONUP and stlacene == True:
             stlacene = False
             if pozicia_x in range(0, 600) and pozicia_y in range(0, 600):
                 hrac *= -1
             kto_je_na_rade()
-            if 1 in vyherca:
+            if 1 in vyherca or 0 in vyherca:
                 pygame.time.wait(3000)
                 pygame.quit()
     pygame.display.update()
