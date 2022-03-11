@@ -1,4 +1,5 @@
 import pygame, sys
+import random 
 
 
 
@@ -9,9 +10,11 @@ pygame.init()
 VYSKA = 700
 SIRKA = 600
 stlacene = False
-hrac = 1
+hrac = "nikto"
 vyherca = []
 cas1 = 0
+desat_cisel = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
 
 #hracia plocha v terminali
 hracia_plocha = [[0,0,0],
@@ -30,7 +33,23 @@ hrac2_text = font.render("Hráč 2", True, (153, 0, 102))
 obrazovka = pygame.display.set_mode((SIRKA, VYSKA))
 obrazovka.fill((93, 173, 226))
 
-#ktory_hrac = int(input("gg"))
+#ktory hrac zacina
+while True:
+    nahodne_cislo = random.choice(desat_cisel)
+    cislo_hrac1 = int(input("Aké číslo si vybral hráč 1? "))
+    cislo_hrac2 = int(input("Aké číslo si vybral hráč 2? "))
+    print(nahodne_cislo)
+    if cislo_hrac1 - nahodne_cislo > cislo_hrac2 - nahodne_cislo:
+        hrac = 1
+        print("Začína hráč 1")
+        break
+    if cislo_hrac2 - nahodne_cislo > cislo_hrac1 - nahodne_cislo:
+        hrac = -1
+        print("Začína hráč 2")
+        break
+    if cislo_hrac1 - nahodne_cislo == cislo_hrac2 - nahodne_cislo:
+        print("Ideme odznova")
+        False
 
 #definicia ciar
 def ciara(bod_A, bod_B):
@@ -79,74 +98,74 @@ def nakresli_kruzok(x, y):
 def nakresli_znak():
     #vlavo hore
     if pozicia_x in range(0, 200) and pozicia_y in range(0, 200):
-        if hrac == 1:
+        if hrac == 1 and hracia_plocha[0][0] == 0:
             prida_do_hracej_plochy(0, 0, 1)
             nakresli_krizik(20, 20, 180, 180, 180, 20, 20, 180)
-        if hrac == -1:
+        if hrac == -1 and hracia_plocha[0][0] == 0:
             prida_do_hracej_plochy(0, 0, 2)
             nakresli_kruzok(100, 100)
     #stred hore
     if pozicia_x in range(200, 400) and pozicia_y in range(0, 200):
-        if hrac == 1:
+        if hrac == 1 and hracia_plocha[0][1] == 0:
             prida_do_hracej_plochy(0, 1, 1)
             nakresli_krizik(220, 20, 380, 180, 380, 20, 220, 180)
-        if hrac == -1:
+        if hrac == -1 and hracia_plocha[0][1] == 0:
             prida_do_hracej_plochy(0, 1, 2)
             nakresli_kruzok(300, 100)
     #vpravo hore
     if pozicia_x in range(400, 600) and pozicia_y in range(0, 200):
-        if hrac == 1:
+        if hrac == 1 and hracia_plocha[0][2] == 0:
             prida_do_hracej_plochy(0, 2, 1)
             nakresli_krizik(420, 20, 580, 180, 580, 20, 420, 180)
-        if hrac == -1:
+        if hrac == -1 and hracia_plocha[0][2] == 0:
             prida_do_hracej_plochy(0, 2, 2)
             nakresli_kruzok(500, 100)
     #vlavo stred
     if pozicia_x in range(0, 200) and pozicia_y in range(200, 400):
-        if hrac == 1:
+        if hrac == 1 and hracia_plocha[1][0] == 0:
             prida_do_hracej_plochy(1, 0, 1)
             nakresli_krizik(20, 220, 180, 380, 180, 220, 20, 380)
-        if hrac == -1:
+        if hrac == -1 and hracia_plocha[1][0] == 0:
             prida_do_hracej_plochy(1, 0, 2)
             nakresli_kruzok(100, 300)
     #stred stred
     if pozicia_x in range(200, 400) and pozicia_y in range(200, 400):
-        if hrac == 1:
+        if hrac == 1 and hracia_plocha[1][1] == 0:
             prida_do_hracej_plochy(1, 1, 1)
             nakresli_krizik(220, 220, 380, 380, 380, 220, 220, 380)
-        if hrac == -1:
+        if hrac == -1 and hracia_plocha[1][1] == 0:
             nakresli_kruzok(300, 300)
             prida_do_hracej_plochy(1, 1, 2)
     #stred vpravo
     if pozicia_x in range(400, 600) and pozicia_y in range(200, 400):
-        if hrac == 1:
+        if hrac == 1 and hracia_plocha[1][2] == 0:
             prida_do_hracej_plochy(1, 2, 1)
             nakresli_krizik(420, 220, 580, 380, 580, 220, 420, 380)
-        if hrac == -1:
+        if hrac == -1 and hracia_plocha[1][2] == 0:
             prida_do_hracej_plochy(1, 2, 2)
             nakresli_kruzok(500, 300)
     #vlavo dole
     if pozicia_x in range(0, 200) and pozicia_y in range(400, 600):
-        if hrac == 1:
+        if hrac == 1 and hracia_plocha[2][0] == 0:
             prida_do_hracej_plochy(2, 0, 1)
             nakresli_krizik(20, 420, 180, 580, 180, 420, 20, 580)
-        if hrac == -1:
+        if hrac == -1 and hracia_plocha[2][0] == 0:
             prida_do_hracej_plochy(2, 0, 2)
             nakresli_kruzok(100, 500)
     #stred dole
     if pozicia_x in range(200, 400) and pozicia_y in range(400, 600):
-        if hrac == 1:
+        if hrac == 1 and hracia_plocha[2][1] == 0:
             prida_do_hracej_plochy(2, 1, 1)
             nakresli_krizik(220, 420, 380, 580, 380, 420, 220, 580)
-        if hrac == -1:
+        if hrac == -1 and hracia_plocha[2][1] == 0:
             prida_do_hracej_plochy(2, 1, 2)
             nakresli_kruzok(300, 500)
     #vpravo dole
     if pozicia_x in range(400, 600) and pozicia_y in range(400, 600):
-        if hrac == 1:
+        if hrac == 1 and hracia_plocha[2][2] == 0:
             prida_do_hracej_plochy(2, 2, 1)
             nakresli_krizik(420, 420, 580, 580, 580, 420, 420, 580)
-        if hrac == -1:
+        if hrac == -1 and hracia_plocha[2][2] == 0:
             prida_do_hracej_plochy(2, 2, 2)
             nakresli_kruzok(500, 500)
 
@@ -217,13 +236,19 @@ def remiza():
         #if
         obrazovka.blit(remiza1, (200, 275))
         vyherca.append(0)
-    
+
+
+#kontrolovanie ze ci bola funkcia privolana
 skontroluj_horizontalne.has_been_called = False
 skontroluj_vertikalne.has_been_called = False
 skontroluj_diagonalne.has_been_called = False
 
 
-pygame.draw.circle(obrazovka, (0, 0, 0), (190, 685), 5)
+#bodka pri hracovi ktory zacina
+if hrac == 1:
+    pygame.draw.circle(obrazovka, (0, 0, 0), (190, 685), 5)
+if hrac  == -1:
+    pygame.draw.circle(obrazovka, (0, 0, 0), (445, 685), 5)
 
 
 
