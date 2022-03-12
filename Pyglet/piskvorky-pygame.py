@@ -1,3 +1,4 @@
+#pridam si potrebne moduly
 import pygame, sys, random
 from pygame import mixer
 
@@ -13,7 +14,6 @@ SIRKA = 600
 stlacene = False
 hrac = "nikto"
 vyherca = []
-cas1 = 0
 desat_cisel = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 
@@ -24,9 +24,9 @@ hracia_plocha = [[0,0,0],
 
 #font
 font = pygame.font.SysFont("Consolas", 50)
-nadpis1 = font.render("VYHRAL HRÁČ 1 !!", True, (102, 204, 51))
-nadpis2 = font.render("VYHRAL HRÁČ 2 !!", True, (102, 204, 51))
-remiza1 = font.render("REMÍZA !!", True, (102, 204, 51))
+nadpis1 = font.render("VYHRAL HRÁČ 1 !!", True, (255, 195, 0))
+nadpis2 = font.render("VYHRAL HRÁČ 2 !!", True, (255, 195, 0))
+remiza1 = font.render("REMÍZA !!", True, (255, 195, 0))
 hrac1_text = font.render("Hráč 1", True, (29, 131, 72))
 hrac2_text = font.render("Hráč 2", True, (153, 0, 102))
 
@@ -56,8 +56,15 @@ while True:
         print("Ideme odznova")
         False
 
+#zvukove efekty
 def zvukovy_efekt():
-    pygame.mixer.music.load('tick.mp3')
+    pygame.mixer.music.load('Pyglet/tick.mp3')
+    pygame.mixer.music.play(0)
+def vyhra_audio():
+    pygame.mixer.music.load('Pyglet/victory-sound.mp3')
+    pygame.mixer.music.play(0)
+def remiza_audio():
+    pygame.mixer.music.load('Pyglet/not-good-sound.mp3')
     pygame.mixer.music.play(0)
 
 
@@ -258,6 +265,8 @@ def remiza():
     if 0 not in hracia_plocha[0] and 0 not in hracia_plocha[1] and 0 not in hracia_plocha[2]:
         obrazovka.blit(remiza1, (200, 275))
         vyherca.append(0)
+        
+        
 
 
 #bodka pri hracovi ktory zacina
@@ -284,15 +293,19 @@ while True:
             skontroluj_horizontalne()
             skontroluj_vertikalne()
             skontroluj_diagonalne()
+            zvukovy_efekt()
             if 1 not in vyherca:
                 remiza()
-            zvukovy_efekt() 
+            if 1 in vyherca:
+                vyhra_audio()
+            if 0 in vyherca:
+                remiza_audio()
         if udalost.type == pygame.MOUSEBUTTONUP and stlacene == True:
             stlacene = False
             if pozicia_x in range(0, 600) and pozicia_y in range(0, 600):
                 hrac *= -1
             kto_je_na_rade()
             if 1 in vyherca or 0 in vyherca:
-                pygame.time.wait(3000)
+                pygame.time.wait(4000)
                 pygame.quit()
     pygame.display.update()
