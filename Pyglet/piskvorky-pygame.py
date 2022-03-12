@@ -1,10 +1,11 @@
-import pygame, sys
-import random 
+import pygame, sys, random
+from pygame import mixer
 
 
 
 #toto tu musi byt
 pygame.init()
+mixer.init()
 
 #konstanty a dalsie vecicky
 VYSKA = 700
@@ -32,24 +33,33 @@ hrac2_text = font.render("Hráč 2", True, (153, 0, 102))
 #obrazovka
 obrazovka = pygame.display.set_mode((SIRKA, VYSKA))
 obrazovka.fill((93, 173, 226))
+nazov = pygame.display.set_caption("Piškvorky")
+
+
+
 
 #ktory hrac zacina
 while True:
     nahodne_cislo = random.choice(desat_cisel)
     cislo_hrac1 = int(input("Aké číslo si vybral hráč 1? "))
     cislo_hrac2 = int(input("Aké číslo si vybral hráč 2? "))
-    print(nahodne_cislo)
-    if cislo_hrac1 - nahodne_cislo > cislo_hrac2 - nahodne_cislo:
+    print("Číslo je: ", nahodne_cislo)
+    if abs(cislo_hrac1 - nahodne_cislo) < abs(cislo_hrac2 - nahodne_cislo):
         hrac = 1
         print("Začína hráč 1")
         break
-    if cislo_hrac2 - nahodne_cislo > cislo_hrac1 - nahodne_cislo:
+    if abs(cislo_hrac2 - nahodne_cislo) < abs(cislo_hrac1 - nahodne_cislo):
         hrac = -1
         print("Začína hráč 2")
         break
-    if cislo_hrac1 - nahodne_cislo == cislo_hrac2 - nahodne_cislo:
+    if abs(cislo_hrac1 - nahodne_cislo) == abs(cislo_hrac2 - nahodne_cislo):
         print("Ideme odznova")
         False
+
+def zvukovy_efekt():
+    pygame.mixer.music.load('tick.mp3')
+    pygame.mixer.music.play(0)
+
 
 #definicia ciar
 def ciara(bod_A, bod_B):
@@ -173,16 +183,31 @@ def nakresli_znak():
 # kontroly vyhier
 def skontroluj_horizontalne():
     #hrac 1
-    if hracia_plocha[0] == [1, 1, 1] or hracia_plocha[1] == [1, 1, 1] or hracia_plocha[2] == [1, 1, 1]:
+    if hracia_plocha[0] == [1, 1, 1]:
         pygame.draw.line(obrazovka, (204, 51, 0), (15, 100), (585, 100), 12)
         obrazovka.blit(nadpis1, (115, 275))
         vyherca.append(1)
+    if hracia_plocha[1] == [1, 1, 1]:
+        pygame.draw.line(obrazovka, (204, 51, 0), (15, 300), (585, 300), 12)
+        obrazovka.blit(nadpis1, (115, 275))
+        vyherca.append(1)
+    if hracia_plocha[2] == [1, 1, 1]:
+        pygame.draw.line(obrazovka, (204, 51, 0), (15, 500), (585, 500), 12)
+        obrazovka.blit(nadpis1, (115, 275))
+        vyherca.append(1)
     #hrac 2
-    if hracia_plocha[0] == [2, 2, 2] or hracia_plocha[1] == [2, 2, 2] or hracia_plocha[2] == [2, 2, 2]:
+    if hracia_plocha[0] == [2, 2, 2]:
+        pygame.draw.line(obrazovka, (204, 51, 0), (15, 100), (585, 100), 12)
+        obrazovka.blit(nadpis2, (115, 275))
+        vyherca.append(1)
+    if hracia_plocha[1] ==  [2, 2, 2]:
         pygame.draw.line(obrazovka, (204, 51, 0), (15, 300), (585, 300), 12)
         obrazovka.blit(nadpis2, (115, 275))
         vyherca.append(1)
-    skontroluj_horizontalne.has_been_called = True
+    if hracia_plocha[2] == [2, 2, 2]:
+        pygame.draw.line(obrazovka, (204, 51, 0), (15, 500), (585, 500), 12)
+        obrazovka.blit(nadpis2, (115, 275))
+        vyherca.append(1)
 def skontroluj_vertikalne():
     #hrac 1
     if hracia_plocha[0][0] == 1 and hracia_plocha[1][0] == 1 and hracia_plocha[2][0] == 1:
@@ -210,7 +235,6 @@ def skontroluj_vertikalne():
         pygame.draw.line(obrazovka, (204, 51, 0), (500, 15), (500, 585), 12)
         obrazovka.blit(nadpis2, (115, 275))
         vyherca.append(1)
-    skontroluj_vertikalne.has_been_called = True
 def skontroluj_diagonalne():
     #hrac 1 
     if hracia_plocha[0][0] == 1 and hracia_plocha[1][1] == 1 and hracia_plocha[2][2] == 1:
@@ -230,18 +254,10 @@ def skontroluj_diagonalne():
         pygame.draw.line(obrazovka, (204, 51, 0), (585, 15), (15, 585), 12)
         obrazovka.blit(nadpis2, (115, 275))
         vyherca.append(1)
-    skontroluj_diagonalne.has_been_called = True
 def remiza():
     if 0 not in hracia_plocha[0] and 0 not in hracia_plocha[1] and 0 not in hracia_plocha[2]:
-        #if
         obrazovka.blit(remiza1, (200, 275))
         vyherca.append(0)
-
-
-#kontrolovanie ze ci bola funkcia privolana
-skontroluj_horizontalne.has_been_called = False
-skontroluj_vertikalne.has_been_called = False
-skontroluj_diagonalne.has_been_called = False
 
 
 #bodka pri hracovi ktory zacina
@@ -268,8 +284,9 @@ while True:
             skontroluj_horizontalne()
             skontroluj_vertikalne()
             skontroluj_diagonalne()
-            if skontroluj_horizontalne.has_been_called == False or skontroluj_vertikalne.has_been_called == False or skontroluj_diagonalne.has_been_called == False:
+            if 1 not in vyherca:
                 remiza()
+            zvukovy_efekt() 
         if udalost.type == pygame.MOUSEBUTTONUP and stlacene == True:
             stlacene = False
             if pozicia_x in range(0, 600) and pozicia_y in range(0, 600):
