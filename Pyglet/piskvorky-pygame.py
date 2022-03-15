@@ -192,75 +192,59 @@ def skontroluj_horizontalne():
     #hrac 1
     if hracia_plocha[0] == [1, 1, 1]:
         pygame.draw.line(obrazovka, (204, 51, 0), (15, 100), (585, 100), 12)
-        obrazovka.blit(nadpis1, (115, 275))
         vyherca.append(1)
     if hracia_plocha[1] == [1, 1, 1]:
         pygame.draw.line(obrazovka, (204, 51, 0), (15, 300), (585, 300), 12)
-        obrazovka.blit(nadpis1, (115, 275))
         vyherca.append(1)
     if hracia_plocha[2] == [1, 1, 1]:
         pygame.draw.line(obrazovka, (204, 51, 0), (15, 500), (585, 500), 12)
-        obrazovka.blit(nadpis1, (115, 275))
         vyherca.append(1)
     #hrac 2
     if hracia_plocha[0] == [2, 2, 2]:
         pygame.draw.line(obrazovka, (204, 51, 0), (15, 100), (585, 100), 12)
-        obrazovka.blit(nadpis2, (115, 275))
-        vyherca.append(1)
+        vyherca.append(2)
     if hracia_plocha[1] ==  [2, 2, 2]:
         pygame.draw.line(obrazovka, (204, 51, 0), (15, 300), (585, 300), 12)
-        obrazovka.blit(nadpis2, (115, 275))
-        vyherca.append(1)
+        vyherca.append(2)
     if hracia_plocha[2] == [2, 2, 2]:
         pygame.draw.line(obrazovka, (204, 51, 0), (15, 500), (585, 500), 12)
-        obrazovka.blit(nadpis2, (115, 275))
-        vyherca.append(1)
+        vyherca.append(2)
 def skontroluj_vertikalne():
     #hrac 1
     if hracia_plocha[0][0] == 1 and hracia_plocha[1][0] == 1 and hracia_plocha[2][0] == 1:
         pygame.draw.line(obrazovka, (204, 51, 0), (100, 15), (100, 585), 12)
-        obrazovka.blit(nadpis1, (115, 275))
         vyherca.append(1)
     if hracia_plocha[0][1] == 1 and hracia_plocha[1][1] == 1 and hracia_plocha[2][1] == 1:
         pygame.draw.line(obrazovka, (204, 51, 0), (300, 15), (300, 585), 12)
-        obrazovka.blit(nadpis1, (115, 275))
         vyherca.append(1)
     if hracia_plocha[0][2] == 1 and hracia_plocha[1][2] == 1 and hracia_plocha[2][2] == 1:
         pygame.draw.line(obrazovka, (204, 51, 0), (500, 15), (500, 585), 12)
-        obrazovka.blit(nadpis1, (115, 275))
         vyherca.append(1)
     #hrac 2
     if hracia_plocha[0][0] == 2 and hracia_plocha[1][0] == 2 and hracia_plocha[2][0] == 2:
         pygame.draw.line(obrazovka, (204, 51, 0), (100, 15), (100, 585), 12)
-        obrazovka.blit(nadpis2, (115, 275))
-        vyherca.append(1)
+        vyherca.append(2)
     if hracia_plocha[0][1] == 2 and hracia_plocha[1][1] == 2 and hracia_plocha[2][1] == 2:
         pygame.draw.line(obrazovka, (204, 51, 0), (300, 15), (300, 585), 12)
-        obrazovka.blit(nadpis2, (115, 275))
-        vyherca.append(1)
+        vyherca.append(2)
     if hracia_plocha[0][2] == 2 and hracia_plocha[1][2] == 2 and hracia_plocha[2][2] == 2:
         pygame.draw.line(obrazovka, (204, 51, 0), (500, 15), (500, 585), 12)
-        obrazovka.blit(nadpis2, (115, 275))
-        vyherca.append(1)
+        vyherca.append(2)
 def skontroluj_diagonalne():
     #hrac 1 
     if hracia_plocha[0][0] == 1 and hracia_plocha[1][1] == 1 and hracia_plocha[2][2] == 1:
         pygame.draw.line(obrazovka, (204, 51, 0), (15, 15), (585, 585), 12)
-        obrazovka.blit(nadpis1, (115, 275))
         vyherca.append(1)
     if hracia_plocha[0][2] == 1 and hracia_plocha[1][1] == 1 and hracia_plocha[2][0] == 1:
         pygame.draw.line(obrazovka, (204, 51, 0), (585, 15), (15, 585), 12)
-        obrazovka.blit(nadpis1, (115, 275))
         vyherca.append(1)
     #hrac 2
     if hracia_plocha[0][0] == 2 and hracia_plocha[1][1] == 2 and hracia_plocha[2][2] == 2:
         pygame.draw.line(obrazovka, (204, 51, 0), (15, 15), (585, 585), 12)
-        obrazovka.blit(nadpis2, (115, 275))
-        vyherca.append(1)
+        vyherca.append(2)
     if hracia_plocha[0][2] == 2 and hracia_plocha[1][1] == 2 and hracia_plocha[2][0] == 2:
         pygame.draw.line(obrazovka, (204, 51, 0), (585, 15), (15, 585), 12)
-        obrazovka.blit(nadpis2, (115, 275))
-        vyherca.append(1)
+        vyherca.append(2)
 def remiza():
     if 0 not in hracia_plocha[0] and 0 not in hracia_plocha[1] and 0 not in hracia_plocha[2]:
         obrazovka.blit(remiza1, (200, 275))
@@ -294,9 +278,13 @@ while True:
             skontroluj_vertikalne()
             skontroluj_diagonalne()
             zvukovy_efekt()
-            if 1 not in vyherca:
+            if 1 not in vyherca or 2 not in vyherca:
                 remiza()
+            if 2 in vyherca:
+                obrazovka.blit(nadpis2, (115, 275))
+                vyhra_audio()
             if 1 in vyherca:
+                obrazovka.blit(nadpis1, (115, 275))
                 vyhra_audio()
             if 0 in vyherca:
                 remiza_audio()
