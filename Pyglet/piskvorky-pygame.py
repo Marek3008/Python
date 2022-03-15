@@ -186,67 +186,87 @@ def nakresli_znak():
             prida_do_hracej_plochy(2, 2, 2)
             nakresli_kruzok(500, 500)
 
+vyhra = ""
 
 # kontroly vyhier
 def skontroluj_horizontalne():
+    global vyhra
     #hrac 1
     if hracia_plocha[0] == [1, 1, 1]:
         pygame.draw.line(obrazovka, (204, 51, 0), (15, 100), (585, 100), 12)
         vyherca.append(1)
+        vyhra = "privolana"
     if hracia_plocha[1] == [1, 1, 1]:
         pygame.draw.line(obrazovka, (204, 51, 0), (15, 300), (585, 300), 12)
         vyherca.append(1)
+        vyhra = "privolana"
     if hracia_plocha[2] == [1, 1, 1]:
         pygame.draw.line(obrazovka, (204, 51, 0), (15, 500), (585, 500), 12)
         vyherca.append(1)
+        vyhra = "privolana"
     #hrac 2
     if hracia_plocha[0] == [2, 2, 2]:
         pygame.draw.line(obrazovka, (204, 51, 0), (15, 100), (585, 100), 12)
         vyherca.append(2)
+        vyhra = "privolana"
     if hracia_plocha[1] ==  [2, 2, 2]:
         pygame.draw.line(obrazovka, (204, 51, 0), (15, 300), (585, 300), 12)
         vyherca.append(2)
+        vyhra = "privolana"
     if hracia_plocha[2] == [2, 2, 2]:
         pygame.draw.line(obrazovka, (204, 51, 0), (15, 500), (585, 500), 12)
         vyherca.append(2)
+        vyhra = "privolana"
 def skontroluj_vertikalne():
+    global vyhra
     #hrac 1
     if hracia_plocha[0][0] == 1 and hracia_plocha[1][0] == 1 and hracia_plocha[2][0] == 1:
         pygame.draw.line(obrazovka, (204, 51, 0), (100, 15), (100, 585), 12)
         vyherca.append(1)
+        vyhra = "privolana"
     if hracia_plocha[0][1] == 1 and hracia_plocha[1][1] == 1 and hracia_plocha[2][1] == 1:
         pygame.draw.line(obrazovka, (204, 51, 0), (300, 15), (300, 585), 12)
         vyherca.append(1)
+        vyhra = "privolana"
     if hracia_plocha[0][2] == 1 and hracia_plocha[1][2] == 1 and hracia_plocha[2][2] == 1:
         pygame.draw.line(obrazovka, (204, 51, 0), (500, 15), (500, 585), 12)
         vyherca.append(1)
+        vyhra = "privolana"
     #hrac 2
     if hracia_plocha[0][0] == 2 and hracia_plocha[1][0] == 2 and hracia_plocha[2][0] == 2:
         pygame.draw.line(obrazovka, (204, 51, 0), (100, 15), (100, 585), 12)
         vyherca.append(2)
+        vyhra = "privolana"
     if hracia_plocha[0][1] == 2 and hracia_plocha[1][1] == 2 and hracia_plocha[2][1] == 2:
         pygame.draw.line(obrazovka, (204, 51, 0), (300, 15), (300, 585), 12)
         vyherca.append(2)
+        vyhra = "privolana"
     if hracia_plocha[0][2] == 2 and hracia_plocha[1][2] == 2 and hracia_plocha[2][2] == 2:
         pygame.draw.line(obrazovka, (204, 51, 0), (500, 15), (500, 585), 12)
         vyherca.append(2)
+        vyhra = "privolana"
 def skontroluj_diagonalne():
+    global vyhra
     #hrac 1 
     if hracia_plocha[0][0] == 1 and hracia_plocha[1][1] == 1 and hracia_plocha[2][2] == 1:
         pygame.draw.line(obrazovka, (204, 51, 0), (15, 15), (585, 585), 12)
         vyherca.append(1)
+        vyhra = "privolana"
     if hracia_plocha[0][2] == 1 and hracia_plocha[1][1] == 1 and hracia_plocha[2][0] == 1:
         pygame.draw.line(obrazovka, (204, 51, 0), (585, 15), (15, 585), 12)
         vyherca.append(1)
+        vyhra = "privolana"
     #hrac 2
     if hracia_plocha[0][0] == 2 and hracia_plocha[1][1] == 2 and hracia_plocha[2][2] == 2:
         pygame.draw.line(obrazovka, (204, 51, 0), (15, 15), (585, 585), 12)
         vyherca.append(2)
+        vyhra = "privolana"
     if hracia_plocha[0][2] == 2 and hracia_plocha[1][1] == 2 and hracia_plocha[2][0] == 2:
         pygame.draw.line(obrazovka, (204, 51, 0), (585, 15), (15, 585), 12)
         vyherca.append(2)
+        vyhra = "privolana"
 def remiza():
-    if 0 not in hracia_plocha[0] and 0 not in hracia_plocha[1] and 0 not in hracia_plocha[2]:
+    if 0 not in hracia_plocha[0] and 0 not in hracia_plocha[1] and 0 not in hracia_plocha[2] and vyhra != "privolana":
         obrazovka.blit(remiza1, (200, 275))
         vyherca.append(0)
         
@@ -268,6 +288,9 @@ while True:
         if udalost.type == pygame.QUIT or udalost.type == pygame.K_ESCAPE:
             pygame.quit()
             sys.exit()
+        if udalost.type == pygame.KEYDOWN:
+            if udalost.key == pygame.K_SPACE:
+                pass
         if udalost.type == pygame.MOUSEBUTTONDOWN and stlacene == False :
             stlacene = True
             pozicia = pygame.mouse.get_pos()
@@ -293,7 +316,7 @@ while True:
             if pozicia_x in range(0, 600) and pozicia_y in range(0, 600):
                 hrac *= -1
             kto_je_na_rade()
-            if 1 in vyherca or 0 in vyherca:
+            if 1 in vyherca or 2 in vyherca or 0 in vyherca:
                 pygame.time.wait(4000)
                 pygame.quit()
     pygame.display.update()
